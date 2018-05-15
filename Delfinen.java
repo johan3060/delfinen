@@ -28,60 +28,77 @@ public class Delfinen {
         generateDisciplin();
         generateMembers();
         
-        
-        // løsning til login som sætter active user
-        // print menu
-        // håndtere menu
-        
         int option;
         boolean keepRunning = true;
+        
+        login();
         
         while (keepRunning){
          
         //print menu
-        System.out.println("0. Login");
-        System.out.println("1. Register new member");           
-        System.out.println("2. Delete member");
-        System.out.println("3. List members");
-        System.out.println("4. Register swim time");
-        System.out.println("5. List swim times");
+        System.out.println("0. Register new member");           
+        System.out.println("1. Delete member");
+        System.out.println("2. List members");
+        System.out.println("3. Register swim time");
+        System.out.println("4. List swim times");
+        System.out.println("5. Exit");
         option = getInt("Pick a number (0-5): ");
         
         switch (option){
-        
+                      
             case 0:
-            System.out.println("Login");
-            login();
-            break;
-            
-            
-            case 1:
-            System.out.println("Register new member");
+            if (activeUser.getClearance() == "chairman"){
             registerMember();
+            }
+            else {
+            System.out.println("Not authorized");
+            }
             
             break;   
             
-            case 2:
-            System.out.println("Delete member");    
+            case 1:
+            if (activeUser.getClearance() == "chairman"){   
             deleteMember();
+            }
+            else {
+            System.out.println("Not authorized");
+            }
             
             break;
             
-            case 3: 
-            System.out.println("Listing members");
+            case 2: 
             listMembers();
             
             break;
             
-            case 4:
-            System.out.println("Register swim time");
+            case 3:
+            if (activeUser.getClearance() == "trainer"){
             registerSwimTime();
+            }
+            else {
+            System.out.println("Not authorized");
+            }
+            break;
+            
+            case 4:
+            System.out.println("Listing swim times");
+            if (activeUser.getClearance() == "trainer"){
+            listDisciplineTimes();
+            }
+            else {
+            System.out.println("Not authorized");
+            }
             
             break;
             
             case 5:
-            System.out.println("Listing swim times");
-            listDisciplineTimes();
+            System.out.println("Exiting");
+            System.exit(0);
+            
+            default:
+            
+            System.out.println("You must choose a number (0-5)");
+           
         }
       }
         
