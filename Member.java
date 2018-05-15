@@ -15,8 +15,8 @@ public class Member {
         this.active = active;
         this.competitive = competitive;
 
-        disciplines = new ArrayList<>();
-        subsciptionCalculator = new SubscriptionCalculator(this);
+        this.disciplines = new ArrayList<>();
+        this.subsciptionCalculator = new SubscriptionCalculator(this);
     }
 
     public int getId() {
