@@ -11,7 +11,7 @@ public class Delfinen {
 
    public static void main(String[] args){
       
-        // Test flow
+        /* Test flow
       generateMembers();
       generateDisciplin();
       registerSwimTime();
@@ -19,18 +19,87 @@ public class Delfinen {
       listDisciplineTimes();
       generateUsers();
       activeUser = users.get(0);
+      */
+
    
-        
-   
-   
-        /* Real flow
+        //Real flow
+       
         generateUsers();
-        login();
-        generateMenuOptions();
-        registerMember();
-        */
+        generateDisciplin();
+        generateMembers();
+        
+        
+        // løsning til login som sætter active user
+        // print menu
+        // håndtere menu
+        
+        int option;
+        boolean keepRunning = true;
+        
+        while (keepRunning){
+         
+        //print menu
+        System.out.println("0. Login");
+        System.out.println("1. Register new member");           
+        System.out.println("2. Delete member");
+        System.out.println("3. List members");
+        System.out.println("4. Register swim time");
+        System.out.println("5. List swim times");
+        option = getInt("Pick a number (0-5): ");
+        
+        switch (option){
+        
+            case 0:
+            System.out.println("Login");
+            login();
+            break;
+            
+            
+            case 1:
+            System.out.println("Register new member");
+            registerMember();
+            
+            break;   
+            
+            case 2:
+            System.out.println("Delete member");    
+            deleteMember();
+            
+            break;
+            
+            case 3: 
+            System.out.println("Listing members");
+            listMembers();
+            
+            break;
+            
+            case 4:
+            System.out.println("Register swim time");
+            registerSwimTime();
+            
+            break;
+            
+            case 5:
+            System.out.println("Listing swim times");
+            listDisciplineTimes();
+        }
+      }
+        
    }
+  
    
+   public static int getInt(String prompt){
+      Scanner scanInt = new Scanner (System.in);
+      System.out.print(prompt);
+      //anti Jarl scan.hasNextInt()
+      while (!scanInt.hasNextInt()){
+      //smid det næste væk når det ikke er en int
+         scanInt.next();
+      //vejleder brugeren
+      System.out.print(prompt);
+      }      
+      return scanInt.nextInt();
+      }
    private static void generateDisciplin(){
       disciplines.add(new Discipline("Crawl"));
       disciplines.add(new Discipline("Stroke"));
