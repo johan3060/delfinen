@@ -37,12 +37,11 @@ public class Delfinen {
       disciplines.add(new Discipline("Backstroke"));
       disciplines.add(new Discipline("Butterfly"));
    }
-   
    private static void registerSwimTime(){
       int inputDiscipline = 1;
       int inputTime;
       int inputNameNumber;
-      String inputName = "";
+      Member inputMember = null;
       boolean goAgain = false;
          System.out.println("Registering swim time...");
       do
@@ -51,8 +50,8 @@ public class Delfinen {
          listMemberNames();
          try {
             inputNameNumber = scanner.nextInt();
-            inputName = members.get(inputNameNumber-1).getName();
-            System.out.println("You have choosen " + inputName);
+            inputMember = members.get(inputNameNumber-1);
+            System.out.println("You have choosen " + inputMember.getName());
           
             
             goAgain = false;
@@ -85,21 +84,18 @@ public class Delfinen {
       while(goAgain);
       System.out.println("Enter the time for your choosen disciplin (in seconds)");
       inputTime = scanner.nextInt();
-      disciplines.get(inputDiscipline-1).addTime(inputTime);
-      disciplines.get(inputDiscipline-1).addMemberName(inputName);
+
+      disciplines.get(inputDiscipline-1).addTime(inputTime, inputMember);
       System.out.println("The swim time has been successfully registered");
       
-      //there is no member-name together with the new discipline-time
-   }
-   
+      }
    private static void listDisciplines(){
       int i = 1;
       for (Discipline d : disciplines){
          System.out.println(i + ". " + d.getName() + ".");
          i++;
       }
-   } 
-   
+   }
    private static void generateUsers(){
       users.add(new User("Chairman", "123", "chairman"));
       users.add(new User("Trainer", "abc", "trainer"));
@@ -196,8 +192,6 @@ public class Delfinen {
          System.out.println(m.toString());
       }
    }
-
-   
    private static void listMemberNames(){
       int i = 1;
       for (Member m : members){
@@ -205,7 +199,6 @@ public class Delfinen {
          i++;
       }
    }
-   
    private static void listDisciplineTimes(){
       boolean goAgain;
       int inputDisciplineNumber;
@@ -234,8 +227,6 @@ public class Delfinen {
       }
    
    }
-
-
 
 
 
