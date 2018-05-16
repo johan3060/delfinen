@@ -1,16 +1,21 @@
 import java.util.ArrayList;
+import java.util.LinkedList;
 
-   public class Discipline {
+public class Discipline {
        private String name;
        private Member member;
-       private ArrayList<Time> times;
+       private LinkedList<Time> times;
 
     public Discipline(String name){
       this.name = name;
-      this.times = new ArrayList<>();
+      this.times = new LinkedList<>();
     }
 
-   public String getName(){
+       public LinkedList<Time> getTimes() {
+           return times;
+       }
+
+       public String getName(){
       return name;
    }
    
@@ -27,17 +32,25 @@ import java.util.ArrayList;
       System.out.println("Time: " + times.get(i).getTime() + " seconds.\n");
    }
    public void sortTimes(){
-        Time current;
-        Time previous = times.get(0); // gode gamle stakitproblematik
-        ArrayList<Time> SortedTimes;
-
-        for (int i = 0; i < times.size(); i++) {
-            current = times.get(i);
-
-
-
-
+        LinkedList<Time> sortedTimes = new LinkedList<>();
+        int iterations;
+        if (times.size() < 5) {
+            iterations = times.size();
+        } else {
+            iterations = 5;
         }
+
+        for (int i = 0; i < iterations; i++) {
+            Time currentBest = times.get(0);
+            for (Time t : times) {
+                if (t.getTime() < currentBest.getTime() ){
+                    currentBest = t;
+                }
+            }
+            sortedTimes.add(currentBest);
+            times.remove(currentBest);
+        }
+        times = sortedTimes;
 
 
    }
