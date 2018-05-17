@@ -27,10 +27,10 @@ public class Delfinen {
               System.out.println("4. Register swim time");
               System.out.println("5. List swim times");
               System.out.println("6. Exit");
-              option = getInt("Pick a number (0-5): ");
+              option = getInt("Pick a number (1-6): ");
 
               switch (option){
-                  case 0:
+                  case 1:
                      if (activeUser.getClearance() == "chairman"){
                         registerMember();
                      }
@@ -39,7 +39,7 @@ public class Delfinen {
                      }
                      break;
 
-                  case 1:
+                  case 2:
                      if (activeUser.getClearance() == "chairman"){
                         deleteMember();
                      }
@@ -48,11 +48,11 @@ public class Delfinen {
                      }
                      break;
 
-                  case 2:
+                  case 3:
                      listMembers();
                      break;
 
-                  case 3:
+                  case 4:
                      if (activeUser.getClearance() == "trainer"){
                         registerSwimTime();
                      }
@@ -61,7 +61,7 @@ public class Delfinen {
                      }
                      break;
 
-                  case 4:
+                  case 5:
                      System.out.println("Listing swim times");
                      if (activeUser.getClearance() == "trainer"){
                         listDisciplineTimes();
@@ -71,7 +71,7 @@ public class Delfinen {
                      }
                      break;
 
-                  case 5:
+                  case 6:
                      System.out.println("Exiting");
                      System.exit(0);
 
