@@ -13,15 +13,8 @@ public class Time {
         return time;
     }
 
-    public void setTime(int time) {
-        this.time = time;
-    }
-
     public Member getMember() {
         return member;
     }
 
-    public void setMember(Member member) {
-        this.member = member;
-    }
 }

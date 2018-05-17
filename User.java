@@ -15,23 +15,11 @@ public class User {
         return username;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
     public String getPassword() {
         return password;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
     public String getClearance() {
         return clearance;
-    }
-
-    public void setClearance(String clearance) {
-        this.clearance = clearance;
     }
 }

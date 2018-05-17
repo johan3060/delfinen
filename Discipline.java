@@ -1,21 +1,15 @@
 package delfinen;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
 
 public class Discipline {
        private String name;
-       private Member member;
        private LinkedList<Time> times;
 
     public Discipline(String name){
       this.name = name;
       this.times = new LinkedList<>();
     }
-
-       public LinkedList<Time> getTimes() {
-           return times;
-       }
 
        public String getName(){
       return name;

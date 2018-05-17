@@ -8,12 +8,11 @@ public class Delfinen {
    private static ArrayList<User> users = new ArrayList<>();
    private static Scanner scanner = new Scanner(System.in);
    private static User activeUser;
-   private static ArrayList<String> menuOptions = new ArrayList<>();
    private static ArrayList<Member> members = new ArrayList<>();
 
    public static void main(String[] args){
         generateUsers();
-        generateDisciplin();
+        generateDiscipline();
         generateMembers();
         
         int option;
@@ -105,7 +104,7 @@ public class Delfinen {
       }      
       return scanInt.nextInt();
       }
-   private static void generateDisciplin(){
+   private static void generateDiscipline(){
       disciplines.add(new Discipline("Crawl"));
       disciplines.add(new Discipline("Stroke"));
       disciplines.add(new Discipline("Backstroke"));
@@ -282,15 +281,14 @@ public class Delfinen {
       for (int i = 0; i< disciplineInput.getTimesSize(); i++){
          disciplineInput.printNameAndTime(i);
       }
-   
    }
    private static void registerPayment(){
        System.out.println("Choose a member for registering a payment.");
        listMembers();
        int input = scanner.nextInt();
-       members.get(input - 1).getSubsciptionCalculator().registerPayment();
+       members.get(input - 1).getSubscriptionCalculator().registerPayment();
        System.out.println("Payment for  " + members.get(input - 1).getName() + " has been registered." );
-       System.out.println("Next payment due in: " + members.get(input - 1).getSubsciptionCalculator().getPaymentDue() );
+       System.out.println("Next payment due in: " + members.get(input - 1).getSubscriptionCalculator().getPaymentDue() );
 
 
 

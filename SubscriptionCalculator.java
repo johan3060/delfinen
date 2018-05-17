@@ -1,10 +1,7 @@
 package delfinen;
 
-import java.util.Date;
-
 public class SubscriptionCalculator {
     private int paymentDue;
-    private int amountDue;
     private Member owner;
     private double price;
 
@@ -23,15 +20,6 @@ public class SubscriptionCalculator {
     }
     public int getPaymentDue() {
         return paymentDue;
-    }
-    public void setPaymentDue(int paymentDue) {
-        this.paymentDue = paymentDue;
-    }
-    public int getAmountDue() {
-        return amountDue;
-    }
-    public void setAmountDue(int amountDue) {
-        this.amountDue = amountDue;
     }
     public void calculateSubscription(){
         price = 1000;
