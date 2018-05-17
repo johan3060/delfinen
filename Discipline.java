@@ -41,7 +41,6 @@ public class Discipline {
         } else {
             iterations = 5;
         }
-
         for (int i = 0; i < iterations; i++) {
             Time currentBest = times.get(0);
             for (Time t : times) {
@@ -53,9 +52,5 @@ public class Discipline {
             times.remove(currentBest);
         }
         times = sortedTimes;
-
-
    }
-   
-   
 }

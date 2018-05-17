@@ -28,8 +28,9 @@ public class Delfinen {
               System.out.println("3. List members");
               System.out.println("4. Register swim time");
               System.out.println("5. List swim times");
-              System.out.println("6. Exit");
-              option = getInt("Pick a number (1-6): ");
+              System.out.println("6. Register payment");
+              System.out.println("7. Exit");
+              option = getInt("Pick a number (1-7): ");
 
               switch (option){
                   case 1:
@@ -67,18 +68,27 @@ public class Delfinen {
                      System.out.println("Listing swim times");
                      if (activeUser.getClearance() == "trainer"){
                         listDisciplineTimes();
-                     }
-                     else {
+                     } else {
                         System.out.println("Not authorized");
                      }
                      break;
 
                   case 6:
+                      if (activeUser.getClearance() == "cashier") {
+                          registerPayment();
+                      } else {
+                          System.out.println("Not authorized.");
+                      }
+
+
+                      break;
+
+                  case 7:
                      System.out.println("Exiting");
                      System.exit(0);
 
                   default:
-                     System.out.println("You must choose a number (0-5)");
+                     System.out.println("You must choose a number (1-7)");
            }
       }
    }
@@ -170,6 +180,7 @@ public class Delfinen {
       members.add(new Member("Uffe", 32,true,true));
       members.add(new Member("Mads", 12,false,true));
       members.add(new Member("Morten", 10,true,false));
+      members.add(new Member("Inga", 72,true,false));
    }
    private static void login() {
       int i = 1;
@@ -231,8 +242,10 @@ public class Delfinen {
       }
    }
    private static void listMembers(){
+       int i = 1;
       for (Member m : members) {
-         System.out.println(m.toString());
+         System.out.println(i + ". " + m.toString());
+         i++;
       }
    }
    private static void listMemberNames(){
@@ -270,5 +283,16 @@ public class Delfinen {
          disciplineInput.printNameAndTime(i);
       }
    
+   }
+   private static void registerPayment(){
+       System.out.println("Choose a member for registering a payment.");
+       listMembers();
+       int input = scanner.nextInt();
+       members.get(input - 1).getSubsciptionCalculator().registerPayment();
+       System.out.println("Payment for  " + members.get(input - 1).getName() + " has been registered." );
+       System.out.println("Next payment due in: " + members.get(input - 1).getSubsciptionCalculator().getPaymentDue() );
+
+
+
    }
 }

@@ -85,6 +85,7 @@ public class Member {
             competitiveString = "no";
         }
         stringOutput += "is competetive: " + competitiveString;
+        stringOutput += ", subscription price: " + subsciptionCalculator.getPrice() + " kr.";
 
         return stringOutput;
     }
