@@ -10,20 +10,6 @@ public class Delfinen {
    private static ArrayList<Member> members = new ArrayList<>();
 
    public static void main(String[] args){
-      
-        /* Test flow
-      generateMembers();
-      generateDisciplin();
-      registerSwimTime();
-      registerSwimTime();
-      listDisciplineTimes();
-      generateUsers();
-      activeUser = users.get(0);
-      */
-
-   
-        //Real flow
-       
         generateUsers();
         generateDisciplin();
         generateMembers();
@@ -33,84 +19,74 @@ public class Delfinen {
         
         login();
         
-        while (keepRunning){
-         
-        //print menu
-        System.out.println("0. Register new member");           
-        System.out.println("1. Delete member");
-        System.out.println("2. List members");
-        System.out.println("3. Register swim time");
-        System.out.println("4. List swim times");
-        System.out.println("5. Exit");
-        option = getInt("Pick a number (0-5): ");
-        
-        switch (option){
-                      
-            case 0:
-            if (activeUser.getClearance() == "chairman"){
-            registerMember();
-            }
-            else {
-            System.out.println("Not authorized");
-            }
-            
-            break;   
-            
-            case 1:
-            if (activeUser.getClearance() == "chairman"){   
-            deleteMember();
-            }
-            else {
-            System.out.println("Not authorized");
-            }
-            
-            break;
-            
-            case 2: 
-            listMembers();
-            
-            break;
-            
-            case 3:
-            if (activeUser.getClearance() == "trainer"){
-            registerSwimTime();
-            }
-            else {
-            System.out.println("Not authorized");
-            }
-            break;
-            
-            case 4:
-            System.out.println("Listing swim times");
-            if (activeUser.getClearance() == "trainer"){
-            listDisciplineTimes();
-            }
-            else {
-            System.out.println("Not authorized");
-            }
-            
-            break;
-            
-            case 5:
-            System.out.println("Exiting");
-            System.exit(0);
-            
-            default:
-            
-            System.out.println("You must choose a number (0-5)");
-           
-        }
+           while (keepRunning){
+              //print menu
+              System.out.println("1. Register new member");
+              System.out.println("2. Delete member");
+              System.out.println("3. List members");
+              System.out.println("4. Register swim time");
+              System.out.println("5. List swim times");
+              System.out.println("6. Exit");
+              option = getInt("Pick a number (0-5): ");
+
+              switch (option){
+                  case 0:
+                     if (activeUser.getClearance() == "chairman"){
+                        registerMember();
+                     }
+                     else {
+                        System.out.println("Not authorized");
+                     }
+                     break;
+
+                  case 1:
+                     if (activeUser.getClearance() == "chairman"){
+                        deleteMember();
+                     }
+                     else {
+                        System.out.println("Not authorized");
+                     }
+                     break;
+
+                  case 2:
+                     listMembers();
+                     break;
+
+                  case 3:
+                     if (activeUser.getClearance() == "trainer"){
+                        registerSwimTime();
+                     }
+                     else {
+                        System.out.println("Not authorized");
+                     }
+                     break;
+
+                  case 4:
+                     System.out.println("Listing swim times");
+                     if (activeUser.getClearance() == "trainer"){
+                        listDisciplineTimes();
+                     }
+                     else {
+                        System.out.println("Not authorized");
+                     }
+                     break;
+
+                  case 5:
+                     System.out.println("Exiting");
+                     System.exit(0);
+
+                  default:
+                     System.out.println("You must choose a number (0-5)");
+           }
       }
-        
    }
-  
    
    public static int getInt(String prompt){
       Scanner scanInt = new Scanner (System.in);
       System.out.print(prompt);
       //anti Jarl scan.hasNextInt()
       while (!scanInt.hasNextInt()){
-      //smid det næste væk når det ikke er en int
+      //smid det nï¿½ste vï¿½k nï¿½r det ikke er en int
          scanInt.next();
       //vejleder brugeren
       System.out.print(prompt);
@@ -194,13 +170,13 @@ public class Delfinen {
       members.add(new Member("Morten", 10,true,false));
    }
    private static void login() {
-      int i = 0;
+      int i = 1;
       System.out.println("Choose a user");
       for (User u : users){
          System.out.println(i + " " + u.getUsername());
          i++;
       }
-      int input = scanner.nextInt();
+      int input = scanner.nextInt() - 1;
       System.out.println("Enter your password:");
       String passwordInput = scanner.next();
    
@@ -210,27 +186,6 @@ public class Delfinen {
       } else {
          System.out.println("Login failed");
       }
-   }
-   private static void generateMenuOptions(){
-      switch (activeUser.getClearance()) {
-         case "chairman":
-            System.out.println("1. Register new member");
-            System.out.println("2. Delete member");
-            System.out.println("3. Display list of members");
-            break;
-         case "trainer":
-            System.out.println("1. Register swim time");
-            System.out.println("2. List swim times");
-            System.out.println("3. Display list of members");
-            break;
-         case "cashier":
-            System.out.println("1. Register payment");
-            System.out.println("2. List delayed payments");
-            System.out.println("3. Display list of members");
-            break;
-      }
-   
-   
    }
    private static void registerMember() {
       System.out.println("Enter a name");
@@ -299,6 +254,7 @@ public class Delfinen {
             disciplineInput = disciplines.get(inputDisciplineNumber-1);
          //If user enters out of range, will have an error!
             System.out.println("You have choosen " + disciplineInput.getName());
+            disciplineInput.sortTimes();
             goAgain = false;
          }
          catch(Exception e){
@@ -313,7 +269,4 @@ public class Delfinen {
       }
    
    }
-
-
-
 }
