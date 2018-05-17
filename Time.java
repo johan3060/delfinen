@@ -1,3 +1,5 @@
+package delfinen;
+
 public class Time {
     private int time;
     private Member member;
